@@ -2,7 +2,7 @@
 set -e
 
 echo "> En attente de la BDD..."
-until mysql -h db -uhm -phamid123 --ssl-mode=DISABLED -e "SELECT 1;" >/dev/null 2>&1; do
+until mysql -h db -uhm -phamid123 -e "SELECT 1;" >/dev/null 2>&1; do
     echo "Erreur connexion BDD (entrypoint)..."
     sleep 2
 done
