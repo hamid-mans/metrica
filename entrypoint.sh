@@ -19,6 +19,7 @@ if [ "$APP_ENV" = "prod" ]; then
     php bin/console doctrine:schema:update --force
 
     echo "> Build assets..."
+    composer require symfony/ux-stimulus --dev
     php bin/console assets:install public --no-interaction
     php bin/console asset-map:compile
 
