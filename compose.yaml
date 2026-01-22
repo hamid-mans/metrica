@@ -7,7 +7,7 @@ services:
       MYSQL_USER: hm
       MYSQL_PASSWORD: hamid123
     ports:
-      - "3307:3306"
+      - "3306:3306"
     volumes:
       - db_data:/var/lib/mysql
 
