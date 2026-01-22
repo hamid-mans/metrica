@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Statistiques{% endblock %}
+
+{% block topbar %}
+	Statistiques
+{% endblock %}
+
+{% block body %}
+	{{ render_chart(chart) }}
+{% endblock %}

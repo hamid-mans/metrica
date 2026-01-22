@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block topbar %}
+    Tableau de bord
+{% endblock %}
+
+{% block body %}
+    <div class="ui stats">
+        <a href="{{ path('app.dashboard.product.index') }}">
+            <div class="stat">
+                <div class="value">
+                    <i class="horse icon"></i> {{ products }}
+                </div>
+                <div class="label">
+                    produits
+                </div>
+            </div>
+        </a>
+
+        <div class="stat">
+            <div class="value">
+                <i class="route icon"></i> {{ workflows }}
+            </div>
+            <div class="label">
+                Workflows
+            </div>
+        </div>
+    </div>
+{% endblock %}

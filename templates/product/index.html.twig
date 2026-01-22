@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Produits{% endblock %}
+
+{% block topbar %}
+    Produits
+{% endblock %}
+
+{% block body %}
+
+    {% for msg in app.flashes('success') %}
+        <div class="ui message">
+            {{ msg }}
+        </div>
+    {% endfor %}
+
+    <a href="{{ path('app.dashboard.product.create') }}" class="ui principal button">
+        <i class="plus icon"></i>
+        Nouveau
+    </a>
+
+    <table class="ui celled table">
+        <thead>
+        <tr>
+            <th class="table-loop">#</th>
+            <th>Nom</th>
+            <th class="table-loop"><i class="cog icon"></i></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for product in products %}
+            <tr data-controller="row-link" data-action="click->row-link#click" data-row-link-url-value="{{ path('app.dashboard.product.update', { id: product.id }) }}">
+                <td class="table-loop">{{ loop.index }}</td>
+                <td>{{ product.name }}</td>
+                <td>
+                    <a href="{{ path('app.dashboard.product.delete', { id: product.id }) }}" class="ui basic red label">
+                        Supprimer
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
