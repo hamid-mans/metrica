@@ -2,9 +2,9 @@
 set -e
 
 echo "> En attente de la BDD..."
-until mysql -h db -uhm -phamid123 -e "SELECT 1;" >/dev/null 2>&1; do
-    echo "Erreur connexion BDD (entrypoint)..."
-    sleep 2
+until mysqladmin ping -h db -P 3306 --silent; do
+  echo "MySQL pas encore prêt..."
+  sleep 2
 done
 echo "✓ BDD OK !"
 
