@@ -17,7 +17,6 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 #[Route('/etapes', 'app.dashboard.steps.')]
 final class StepController extends AbstractController
 {
-    #[isGranted("ROLE_ADMIN")]
     #[Route('/create/{workflowId}', name: 'create')]
     public function create(Workflow $workflowId, EntityManagerInterface $entityManager, Request $request)
     {
@@ -43,7 +42,6 @@ final class StepController extends AbstractController
         }
     }
 
-    #[isGranted("ROLE_ADMIN")]
     #[Route('/modifier/{id}', name: 'update')]
     public function update(Step $step, Request $request, EntityManagerInterface $entityManager): Response
     {

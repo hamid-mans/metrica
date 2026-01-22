@@ -4,8 +4,10 @@ namespace App\Form;
 
 use App\Entity\Product;
 use App\Entity\Workflow;
+use Doctrine\DBAL\Types\BooleanType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -23,6 +25,13 @@ class WorkflowType extends AbstractType
             ->add('price', TextType::class, [
                 'label' => false,
                 'required' => false
+            ])
+            ->add('separation', CheckboxType::class, [
+                'label' => false,
+                'required' => false,
+                'attr' => [
+                    'class' => 'ui checkbox'
+                ]
             ])
             ->add('submit', SubmitType::class, [
                 'label' => $options['submit_label'],

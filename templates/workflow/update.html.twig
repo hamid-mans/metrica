@@ -37,9 +37,14 @@
                 </div>
             </div>
 
-        <div class="field">
-            {{ form_widget(form.submit, { label_html: true }) }}
-        </div>
+            <div class="field">
+                <label for="workflow_separation">Orientation sanitaire ?</label>
+                <span class="inter">==></span> {{ form_widget(form.separation) }} <span class="inter"><==</span>
+            </div>
+
+            <div class="field">
+                {{ form_widget(form.submit, { label_html: true }) }}
+            </div>
 
         {{ form_end(form) }}
 

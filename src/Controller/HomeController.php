@@ -10,7 +10,6 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/', 'app.dashboard.')]
-#[isGranted("ROLE_ADMIN")]
 final class HomeController extends AbstractController
 {
     #[Route('/', name: 'home')]

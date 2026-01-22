@@ -12,16 +12,16 @@ class SecurityController extends AbstractController
     #[Route(path: '/se-connecter', name: 'app.security.login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
-        if ($this->getUser()) {
-            return $this->redirectToRoute('app.dashboard.home');
-        }
+
+        return $this->redirectToRoute('app.dashboard.home');
+
 
         // get the login error if there is one
-        $error = $authenticationUtils->getLastAuthenticationError();
+        //$error = $authenticationUtils->getLastAuthenticationError();
         // last username entered by the user
-        $lastUsername = $authenticationUtils->getLastUsername();
+        //$lastUsername = $authenticationUtils->getLastUsername();
 
-        return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
+        //return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
     }
 
     #[Route(path: '/logout', name: 'app_logout')]

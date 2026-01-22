@@ -36,6 +36,9 @@ class Workflow
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $price = null;
 
+    #[ORM\Column]
+    private ?bool $separation = null;
+
     public function __construct()
     {
         $this->steps = new ArrayCollection();
@@ -108,6 +111,18 @@ class Workflow
     public function setPrice(?string $price): static
     {
         $this->price = $price;
+
+        return $this;
+    }
+
+    public function isSeparation(): ?bool
+    {
+        return $this->separation;
+    }
+
+    public function setSeparation(bool $separation): static
+    {
+        $this->separation = $separation;
 
         return $this;
     }

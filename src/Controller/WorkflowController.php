@@ -18,7 +18,6 @@ use Symfony\UX\Chartjs\Builder\ChartBuilderInterface;
 use Symfony\UX\Chartjs\Model\Chart;
 
 #[Route('/processus', 'app.dashboard.workflow.')]
-#[isGranted("ROLE_ADMIN")]
 final class WorkflowController extends AbstractController
 {
     #[Route('/nouveau/{productId}', name: 'create')]
@@ -87,8 +86,8 @@ final class WorkflowController extends AbstractController
             'datasets' => [
                 [
                     'label' => $workflow->getName(),
-                    'backgroundColor' => '#a9d49d',
-                    'borderColor' => 'green',
+                    'backgroundColor' => 'rgba(169, 212, 157, 0.6)',
+                    'fill' => true,
                     'data' => $workflow->getSteps()->map(function (Step $step) {return $step->getIncome() - $step->getCost();})->toArray(),
                     'spanGaps' => true,
                 ]

@@ -74,7 +74,12 @@
 	{{ component('Hr', { icon: 'chartline', text: 'Statistiques' }) }}
 
 	<div class="ui segment grid">
-		<div class="eight wide column">{{ render_chart(productWorkflowChart) }}</div>
+		<div class="eight wide column">{{ render_chart(productWorkflowProfitChart1) }}</div>
+		<div class="eight wide column">{{ render_chart(productWorkflowProfitChart2) }}</div>
+	</div>
+
+	<div class="ui segment">
+		<div class="">{{ render_chart(productWorkflowProfitChart3) }}</div>
 	</div>
 
 {% endblock %}

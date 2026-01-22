@@ -21,7 +21,7 @@ class Product
     /**
      * @var Collection<int, Workflow>
      */
-    #[ORM\OneToMany(targetEntity: Workflow::class, mappedBy: 'product')]
+    #[ORM\OneToMany(targetEntity: Workflow::class, mappedBy: 'product', cascade: ['persist'], orphanRemoval: true)]
     private Collection $workflows;
 
     public function __construct()
