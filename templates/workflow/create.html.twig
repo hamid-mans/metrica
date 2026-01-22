@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau processus{% endblock %}
+
+{% block topbar %}
+    Nouveau processus
+{% endblock %}
+
+{% block body %}
+    <div class="ui form">
+
+        {{ component('Hr', { icon: 'info', text: 'Général' }) }}
+
+        {{ form_start(form) }}
+        <div class="two fields">
+            <div class="field">
+                <label for="workflow_name">Nom du processus</label>
+                {{ form_row(form.name) }}
+            </div>
+
+            <div class="field">
+                <label for="workflow_price">Prix de la prestation</label>
+                {{ form_row(form.price) }}
+            </div>
+        </div>
+
+            <div class="field">
+                {{ form_widget(form.submit, { label_html: true }) }}
+                <a class="ui basic black button" href="{{ path('app.dashboard.product.update', { id: productId }) }}">
+                    <i class="reply icon"></i>
+                    Retour
+                </a>
+            </div>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

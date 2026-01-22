@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau produit{% endblock %}
+
+{% block topbar %}
+    Nouveau produit
+{% endblock %}
+
+{% block body %}
+    <div class="ui form">
+
+        {{ component('Hr', { icon: 'info', text: 'Général' }) }}
+
+        {{ form_start(form) }}
+            <div class="field">
+                <label for="product_name">Nom du produit</label>
+                {{ form_row(form.name) }}
+            </div>
+
+            <div class="field">
+                {{ form_row(form.submit, { label_html: true }) }}
+            </div>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

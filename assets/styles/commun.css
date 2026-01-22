@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Lora:ital,wght@0,400..700;1,400..700&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+.topbar *:not(i,.inter) {
+    font-family: "Lora", sans-serif !important;
+}
+
+:root {
+    --color-black: #282828;
+    --color-border: #d3d3d3;
+    --color-bg: #fdfdfd;
+    --color-sidebar: #dae5db;
+    --color-principal: #e3efe4;
+}
+
+.ui.principal.button { background-color: var(--color-principal) }
+.ui.label { background-color: var(--color-bg) !important; }
+table { border-top: 3px solid var(--color-sidebar) !important; }
+table thead th { text-transform: uppercase !important; }
+table tbody tr td a:not(a.label) { color: var(--color-black) !important; }
+table thead tr th.table-loop,
+table tbody tr td.table-loop {
+    text-align: center !important;
+    color: gray !important;
+    width: 8%;
+}
+table tbody tr:hover {
+    background-color: #ececec;
+}
+.ui.principal.button { margin: 7px 0; border: 1px solid lightgrey; }
+.ui.principal.button:hover { border-color: grey; }
+.space { margin-top: 50px; }
+.inter { font-family: 'Inter', sans-serif !important }
+
+html, body {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    background-color: var(--color-bg);
+    overflow: hidden;
+}

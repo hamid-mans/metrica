@@ -1,0 +1,114 @@
+.layout {
+    height: 100vh;
+    display: grid;
+
+    grid-template-columns: 280px 1fr;
+
+    grid-template-rows: 80px 1fr;
+
+    grid-template-areas:
+    "logo topbar"
+    "sidebar content";
+}
+
+.logo,
+.sidebar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.logo {
+    grid-area: logo;
+    color: var(--color-black);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-sidebar);
+}
+
+.logo h1 {
+    font-family: 'Orbitron', sans-serif !important;
+    letter-spacing: 5px;
+}
+
+.logo img {
+    width: 70%;
+}
+
+.topbar {
+    grid-area: topbar;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+}
+
+.topbar h1 { font-weight: 400 !important; }
+
+.sidebar {
+    background-color: var(--color-sidebar);
+    grid-area: sidebar;
+}
+
+.sidebar .company {
+    width: 100%;
+    padding: 20px;
+    border-bottom: 0.9px solid var(--color-border);
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.sidebar .navigation {
+    padding: 16px;
+}
+
+.sidebar nav ul { padding: 0; margin: 0; }
+
+.sidebar nav ul a li {
+    list-style-type: none;
+
+    border-radius: 7px;
+
+    margin: 10px;
+    padding: 7px 5px 7px 10px;
+    transition-duration: 0.3s;
+}
+
+.sidebar nav ul a li:hover {
+    background-color: #ffffff;
+    box-shadow: 0 1px 4px #b7b7b7;
+}
+
+.sidebar nav ul a li.active {
+    background-color: #ffffff;
+    box-shadow: 0 1px 4px #b7b7b7;
+}
+
+.sidebar nav ul a {
+    color: var(--color-black);
+    font-weight: 500;
+}
+
+.sidebar nav ul a li i {
+    margin-right: 15px;
+}
+
+.layout .content-full {
+    grid-area: content;
+    padding: 20px;
+
+    overflow-y: auto;
+    height: 100%;
+}
+
+.sidebar { border-right: 1px solid var(--color-border); border-left: 1px solid var(--color-border) }
+.sidebar .company { border-bottom: 1px solid var(--color-border) }
+.logo { border-right: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); border-top: 1px solid var(--color-border) }
+.topbar { border-bottom: 1px solid var(--color-border); border-top: 1px solid var(--color-border); border-right: 1px solid var(--color-border) }
+.content { border-right: 1px solid var(--color-border) }
+
+.logo,
+.topbar,
+.content {
+    padding: 16px;
+}

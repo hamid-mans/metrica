@@ -1,0 +1,140 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Processus - {{ workflow.name }} {% endblock %}
+
+{% block topbar %}
+    Produit <span class="inter">--></span> {{ workflow.product.name }} <span class="inter">--></span> Processus <span class="inter">--></span> {{ workflow.name }}
+{% endblock %}
+
+{% block body %}
+
+
+    <a class="ui basic black button" href="{{ path('app.dashboard.product.update', { id: workflow.product.id }) }}">
+        <i class="reply icon"></i>
+        Retour
+    </a>
+
+    {% for msg in app.flashes('success') %}
+        <div class="ui message">
+            {{ msg }}
+        </div>
+    {% endfor %}
+
+    <div class="ui form">
+
+        {{ component('Hr', { icon: 'info', text: 'Général' }) }}
+
+        {{ form_start(form) }}
+            <div class="two fields">
+                <div class="field">
+                    <label for="workflow_name">Nom du processus</label>
+                    {{ form_row(form.name) }}
+                </div>
+
+                <div class="field">
+                    <label for="workflow_price">Prix de la prestation</label>
+                    {{ form_row(form.price) }}
+                </div>
+            </div>
+
+        <div class="field">
+            {{ form_widget(form.submit, { label_html: true }) }}
+        </div>
+
+        {{ form_end(form) }}
+
+    </div>
+
+    <div class="space"></div>
+
+    {{ component('Hr', { icon: 'sort numeric down', text: 'Étapes' }) }}
+
+    <div class="ui modal modal">
+
+        {{ component('Hr', { icon: 'info', text: 'Général' }) }}
+
+        {{ form_start(formCreateStep) }}
+            <div class="header">
+                <h1 class="ui header">
+                    Nouvelle étape
+                </h1>
+            </div>
+            <div class="content">
+                <div class="ui form">
+                    <div class="field">
+                        <label for="step_name">Nom de l'étape</label>
+                        {{ form_row(formCreateStep.name) }}
+                    </div>
+
+                   <div class="two fields">
+                       <div class="field">
+                           <label for="step_cost">Coût (en euros)</label>
+                           {{ form_row(formCreateStep.cost) }}
+                       </div>
+
+                       <div class="field">
+                           <label for="step_income">Revenu (en euros)</label>
+                           {{ form_row(formCreateStep.income) }}
+                       </div>
+                   </div>
+
+                    <div class="field">
+                        {{ form_widget(formCreateStep.submit, { label_html: true }) }}
+                        <a class="ui basic black button" href="{{ path('app.dashboard.workflow.update', { id: workflow.id }) }}">
+                            <i class="reply icon"></i>
+                            Retour
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {{ form_end(formCreateStep) }}
+
+    </div>
+
+    <button type="button" onclick="$('.ui.modal').modal('show')" class="ui principal button">
+        <i class="plus icon"></i>
+        Nouveau
+    </button>
+
+    <div data-controller="sortable"
+         data-sortable-url-value="{{ path('app.dashboard.steps.reorder', {id: workflow.id}) }}"
+         data-sortable-token-value="{{ csrf_token('reorder-steps') }}">
+
+        <table class="ui celled table">
+            <thead>
+            <tr>
+                <th class="table-loop">#</th>
+                <th style="width: 40%">Nom</th>
+                <th><i class="plus icon"></i> Gain</th>
+                <th><i class="minus icon"></i> Coût</th>
+                <th><i class="chartline icon"></i> Solde</th>
+                <th class="table-loop">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for step in workflow.steps %}
+                <tr data-controller="row-link" data-action="click->row-link#click" data-row-link-url-value="{{ path('app.dashboard.steps.update', { id: step.id }) }}" style="cursor: grab" class="handle" data-id="{{ step.id }}">
+                    <td class="table-loop order">{{ step.stepNumber }}</td>
+                    <td>{{ step.name }}</td>
+                    <td>{{ step.income }} €</td>
+                    <td>{{ step.cost }} €</td>
+                    <td style="background-color: {{ step.cost < step.income ? 'var(--color-sidebar)' : (step.cost - step.income == 0) ? '#c2b58f' : '#f5a4a9' }};">{{ step.income - step.cost }} € <i class="{{ step.cost < step.income ? 'angle double up' : (step.cost - step.income == 0) ? 'equals' : 'angle double down'}} icon"></i></td>
+                    <td class="table-loop">
+                        <a href="{{ path('app.dashboard.steps.delete', {id: step.id}) }}" class="ui basic red label">Supprimer</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <button onclick="toast()" data-action="click->sortable#save" class="ui black button"><i class="save icon"></i> Enregistrer l'ordre</button>
+    </div>
+
+    {{ component('Hr', { icon: 'chartline', text: 'Statistiques' }) }}
+
+    <div class="ui segment">
+            {{ render_chart(chart) }}
+    </div>
+
+
+{% endblock %}

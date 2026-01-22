@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Produit - {{ product.name }}{% endblock %}
+
+{% block topbar %}
+	Produit <span class="inter">--></span> {{ product.name }}
+{% endblock %}
+
+{% block body %}
+	{% for msg in app.flashes('success') %}
+		<div class="ui message">
+			{{ msg }}
+		</div>
+	{% endfor %}
+
+	<div class="ui form">
+
+		{{ component('Hr', { icon: 'info', text: 'Général' }) }}
+
+		{{ form_start(form) }}
+		<div class="field">
+			<label for="product_name">Nom du produit</label>
+			{{ form_row(form.name) }}
+		</div>
+
+		<div class="field">
+			{{ form_row(form.submit, { label_html: true }) }}
+		</div>
+		{{ form_end(form) }}
+	</div>
+
+	<div class="space"></div>
+
+	{{ component('Hr', { icon: 'route', text: 'Processus' }) }}
+
+	<a href="{{ path('app.dashboard.workflow.create', { productId : product.id }) }}" class="ui principal button">
+		<i class="plus icon"></i>
+		Nouveau
+	</a>
+
+	<table class="ui celled table">
+		<thead>
+		<tr>
+			<th class="table-loop">#</th>
+			<th>Nom</th>
+			<th><i class="chartline icon"></i> Rentabilité</th>
+			<th class="table-loop"><i class="cog icon"></i></th>
+		</tr>
+		</thead>
+		<tbody>
+		{% for workflow in product.workflows %}
+			<tr data-controller="row-link" data-action="click->row-link#click" data-row-link-url-value="{{ path('app.dashboard.workflow.update', { id: workflow.id }) }}">
+				<td class="table-loop">{{ loop.index }}</td>
+				<td>{{ workflow.name }}</td>
+				{% set totalCost = 0 %}
+				{% set totalIncome = 0 %}
+				{% for step in workflow.steps %}
+					{% set totalCost = totalCost + step.cost %}
+					{% set totalIncome = totalIncome + step.income %}
+				{% endfor %}
+				<td style="background-color: {{ (workflow.price + totalIncome > totalCost) ? 'var(--color-sidebar)' : (workflow.price + totalIncome - totalCost == 0) ? '#c2b58f' : '#f5a4a9' }};">{{ workflow.price + totalIncome - totalCost }} € <i class="angle double {{ workflow.price + totalIncome > totalCost ? 'up' : (workflow.price + totalIncome - totalCost == 0) ? 'equals' : 'down' }} icon"></i></td>
+				<td>
+					<a href="{{ path('app.dashboard.workflow.delete', { id: workflow.id }) }}" class="ui basic red label">
+						Supprimer
+					</a>
+				</td>
+			</tr>
+		{% endfor %}
+		</tbody>
+	</table>
+
+	<div class="space"></div>
+
+	{{ component('Hr', { icon: 'chartline', text: 'Statistiques' }) }}
+
+	<div class="ui segment grid">
+		<div class="eight wide column">{{ render_chart(productWorkflowChart) }}</div>
+	</div>
+
+{% endblock %}

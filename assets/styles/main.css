@@ -1,0 +1,57 @@
+.stats {
+    display: flex;
+}
+
+.stats a {
+    color: inherit;
+}
+
+.stats .stat {
+    box-shadow: 0 0 3px 0px gray;
+    border-radius: 5px;
+    margin-right: 20px;
+    padding: 15px 20px 15px 20px;
+    width: 150px;
+}
+
+.stats .stat .value {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.stats .stat .label {
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-top: 5px;
+}
+
+/* SORTABLE.JS */
+
+.steps-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.steps-table th,
+.steps-table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.steps-table tr {
+    cursor: grab;
+}
+
+.handle {
+    cursor: grab;
+}
+
+.dragging {
+    background-color: #e3f2fd !important;
+    opacity: 0.8;
+}
+
+.steps-table tr:hover {
+    background-color: #f8f9fa;
+}

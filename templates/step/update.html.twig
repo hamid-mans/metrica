@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Etape : {{ step.name }}{% endblock %}
+
+{% block topbar %}
+    Processus <span class="inter">--></span> {{ step.workflow.name }} <span class="inter">--></span> Étape <span class="inter">--></span> {{ step.name }}
+{% endblock %}
+
+{% block body %}
+    {{ component('Hr', { icon: 'info', text: 'Général' }) }}
+
+    {{ form_start(form) }}
+    <div class="content">
+        <div class="ui form">
+            <div class="field">
+                <label for="step_name">Nom de l'étape</label>
+                {{ form_row(form.name) }}
+            </div>
+
+            <div class="two fields">
+                <div class="field">
+                    <label for="step_cost">Coût (en euros)</label>
+                    {{ form_row(form.cost) }}
+                </div>
+
+                <div class="field">
+                    <label for="step_income">Revenu (en euros)</label>
+                    {{ form_row(form.income) }}
+                </div>
+            </div>
+
+            <div class="field">
+                {{ form_widget(form.submit, { label_html: true }) }}
+                <a class="ui basic black button" href="{{ path('app.dashboard.workflow.update', { id: step.workflow.id }) }}">
+                    <i class="reply icon"></i>
+                    Retour
+                </a>
+            </div>
+        </div>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}
