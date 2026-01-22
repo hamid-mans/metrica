@@ -92,6 +92,7 @@ final class ProductController extends AbstractController
 
         $datasets = [];
         $highest = 0;
+        $stepName = [];
         foreach ($product->getWorkflows() as $workflow) {
             $workflowsTotal[] = $workflow->getPrice();
             if (count($workflow->getSteps()) > $highest) $highest = $workflow->getSteps()->count();

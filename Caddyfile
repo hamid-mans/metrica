@@ -1,0 +1,8 @@
+localhost {
+    root * /app/public
+    try_files {path} /index.php?{query}
+    php_fastcgi app:9000
+    encode gzip zstd
+    file_server
+    tls internal
+}
