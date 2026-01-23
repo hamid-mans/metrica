@@ -1,4 +1,4 @@
-135.125.102.129 {
+:80 {
     root * /app/public
     try_files {path} /index.php?{query}
     php_fastcgi app:9000
