@@ -43,6 +43,7 @@
 		<tr>
 			<th class="table-loop">#</th>
 			<th>Nom</th>
+			<th>Orientation sanitaire</th>
 			<th><i class="chartline icon"></i> Rentabilité</th>
 			<th class="table-loop"><i class="cog icon"></i></th>
 		</tr>
@@ -52,6 +53,7 @@
 			<tr data-controller="row-link" data-action="click->row-link#click" data-row-link-url-value="{{ path('app.dashboard.workflow.update', { id: workflow.id }) }}">
 				<td class="table-loop">{{ loop.index }}</td>
 				<td>{{ workflow.name }}</td>
+				<td class="table-loop"><i class="{{ workflow.separation ? 'point icon' : '' }}"></i></td>
 				{% set totalCost = 0 %}
 				{% set totalIncome = 0 %}
 				{% for step in workflow.steps %}
