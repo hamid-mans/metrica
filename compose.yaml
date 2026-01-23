@@ -16,7 +16,7 @@ services:
     depends_on:
       - db
     environment:
-      PMA_HOST: 127.0.0.1
+      PMA_HOST: db
       PMA_USER: hm
       PMA_PASSWORD: hamid123
       PMA_ARBITRARY: 1
