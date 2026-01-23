@@ -28,4 +28,13 @@
             </div>
         </div>
     </div>
+
+
+    {{ component('Hr', { icon: 'chartline', text: 'Statistiques' }) }}
+
+    <div style="display: flex; justify-content: center;" class="ui segment grid">
+        <div class="twelve wide column">
+            {{ render_chart(chart) }}
+        </div>
+    </div>
 {% endblock %}

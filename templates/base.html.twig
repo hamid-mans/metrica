@@ -1,7 +1,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Metrica - {% block title %}{% endblock %}</title>
+    <title>ValoriCarcasse - {% block title %}{% endblock %}</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.4/dist/semantic.min.css">
@@ -41,7 +41,6 @@
                 <ul>
                     <a href="{{ path('app.dashboard.home') }}"><li class="{{ app.request.attributes.get('_route') == 'app.dashboard.home' ? 'active' : '' }}"><i class="map signs icon"></i> Tableau de bord</li></a>
                     <a href="{{ path('app.dashboard.product.index') }}"><li  class="{{ app.request.attributes.get('_route') matches '/product|workflow/' ? 'active' : '' }}"><i class="horse icon"></i>Produits</li></a>
-                    <a href="{{ path('app.dashboard.statistics.index') }}"><li  class="{{ app.request.attributes.get('_route') matches '/statistics/' ? 'active' : '' }}"><i class="chartline icon"></i>Statistiques</li></a>
                 </ul>
             </nav>
         </div>
