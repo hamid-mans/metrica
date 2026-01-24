@@ -7,9 +7,6 @@ until mysqladmin ping -h db -P 3306 --silent; do
 done
 echo "✓ MySQL prêt"
 
-echo "> Création DB si absente..."
-php bin/console doctrine:database:create --if-not-exists --no-interaction
-
 echo "> Migration DB..."
 php bin/console doctrine:migrations:migrate --no-interaction --allow-no-migration
 
