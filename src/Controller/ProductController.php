@@ -18,7 +18,7 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\UX\Chartjs\Builder\ChartBuilderInterface;
 use Symfony\UX\Chartjs\Model\Chart;
 
-#[Route('/product', 'app.dashboard.product.')]
+#[Route('/produit', 'app.dashboard.product.')]
 final class ProductController extends AbstractController
 {
     #[Route('/', name: 'index')]
@@ -268,9 +268,10 @@ final class ProductController extends AbstractController
         return $this->redirectToRoute('app.dashboard.product.index');
     }
 
-    #[Route('/clone/{id}', name: 'clone')]
+    #[Route('/clone/{id}', name: 'clone', methods: ['POST'])]
     public function clone(Product $product, EntityManagerInterface $entityManager): Response
     {
+
         $originalProduct = $product;
         $newProduct = new Product();
 

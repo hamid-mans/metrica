@@ -34,9 +34,9 @@
                 <td class="table-loop">{{ loop.index }}</td>
                 <td>{{ product.name }}</td>
                 <td>
-                    <a href="{{ path('app.dashboard.product.clone', { id: product.id }) }}" class="ui basic blue label">
-                        Dupliquer
-                    </a>
+                    <form style="margin: 0;" action="{{ path('app.dashboard.product.clone', { id: product.id }) }}" method="POST">
+                        <button class="ui basic blue label" style="cursor: pointer" type="submit">Dupliquer</button>
+                    </form>
                 </td>
                 <td>
                     <a href="{{ path('app.dashboard.product.delete', { id: product.id }) }}" class="ui basic red label">
