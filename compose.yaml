@@ -11,6 +11,8 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    restart: unless-stopped
+    command: --max_connections=200 --innodb_buffer_pool_size=256M
     ports:
       - "3306:3306"
     volumes:
