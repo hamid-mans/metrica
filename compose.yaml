@@ -36,7 +36,7 @@ services:
       - 1.1.1.1
       - 8.8.8.8
     environment:
-      - APP_ENV=prod
+      - APP_ENV=dev
       - APP_DEBUG=0
       - APP_SECRET=67d829bf4b7bd070f36d6912161d13f0
 
