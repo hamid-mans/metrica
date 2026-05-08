@@ -56,8 +56,7 @@ services:
     depends_on:
       - app
     ports:
-      - "80:80"      # HTTP pour local
-      - "443:443"     # HTTPS auto-signé pour local
+      - "2345:80"      # HTTP pour local
     environment:
       SITE_HOST: ${SITE_HOST:-localhost}
     volumes:
