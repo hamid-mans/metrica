@@ -2,7 +2,7 @@
 set -e
 
 echo "> En attente de la BDD..."
-until mysqladmin ping -h db -P 3306 --silent; do
+until mysqladmin ping -h db -u root --password=hamid123 --silent; do
     echo "Erreur connexion BDD (entrypoint)..."
     sleep 2
 done
