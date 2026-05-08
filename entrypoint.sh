@@ -1,21 +1,25 @@
 #!/bin/sh
 set -e
 
-echo "> Attente MySQL..."
+echo "> En attente de la BDD..."
 until mysqladmin ping -h db -P 3306 --silent; do
-  sleep 2
+    echo "Erreur connexion BDD (entrypoint)..."
+    sleep 2
 done
-echo "✓ MySQL prêt"
+echo "✓ BDD OK !"
 
-echo "> Migration DB..."
-php bin/console doctrine:migrations:migrate --no-interaction --allow-no-migration
-
-if [ "$APP_ENV" = "prod" ]; then
-    echo "> Cache prod..."
-    php bin/console cache:clear --env=prod
-    php bin/console cache:warmup --env=prod
+# Installer les dépendances si besoin
+if [ ! -d vendor ]; then
+    composer install --no-dev --optimize-autoloader
 fi
 
-echo "✓ Symfony prêt"
+echo "> Creation schema de BDD..."
+php bin/console doctrine:schema:update --force --complete
 
+echo "> Build assets..."
+php bin/console assets:install public --no-interaction
+php bin/console asset-map:compile
+php bin/console cache:clear --env=prod
+
+echo "✓ Application prete !"
 exec "$@"

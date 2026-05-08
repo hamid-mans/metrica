@@ -1,13 +1,6 @@
 mobile.ycpgestion.fr:2345 {
     root * /app/public
-    try_files {path} /index.php?{query}
     php_fastcgi app:9000
     encode gzip zstd
     file_server
-
-    # Optionnel : redirection HTTP -> HTTPS
-    @http {
-        protocol http
-    }
-    redir @http https://{host}{uri} permanent
 }

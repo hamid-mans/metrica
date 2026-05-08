@@ -1,20 +1,11 @@
 services:
   db:
-    image: mysql:8.0
+    image: mariadb:11
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: metrica
-      MYSQL_USER: hm
-      MYSQL_PASSWORD: hamid123
-    healthcheck:
-      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-    restart: unless-stopped
-    command: --max_connections=200 --innodb_buffer_pool_size=256M
-    ports:
-      - "3306:3306"
+      MARIADB_ROOT_PASSWORD: roothamid123
+      MARIADB_USER: hm
+      MARIADB_PASSWORD: hamid123
+      MARIADB_DATABASE: metrica
     volumes:
       - db_data:/var/lib/mysql
 
@@ -27,9 +18,6 @@ services:
       PMA_USER: hm
       PMA_PASSWORD: hamid123
       PMA_ARBITRARY: 1
-      PMA_SSL: "false"
-      PMA_SSL_VERIFY: "false"
-      PMA_PORT: 3306
     ports:
       - "8081:80"
     restart: unless-stopped
@@ -39,18 +27,14 @@ services:
       context: .
       dockerfile: Dockerfile
     depends_on:
-      db:
-        condition: service_healthy
+      - db
     volumes:
-      - ./:/app
+      - ./:/valori
     command: ["php-fpm"]
     restart: unless-stopped
-    env_file:
-      - .env.docker
     dns:
       - 1.1.1.1
       - 8.8.8.8
-
   caddy:
     image: caddy:latest
     depends_on:
@@ -61,9 +45,15 @@ services:
       SITE_HOST: ${SITE_HOST:-localhost}
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile
-      - ./:/app
+      - ./:/valori
       - caddy_data:/data
       - caddy_config:/config
+    restart: unless-stopped
+
+  redis:
+    image: redis:7
+    ports:
+      - "6379:6379"
     restart: unless-stopped
 
 volumes:
