@@ -35,6 +35,10 @@ services:
     dns:
       - 1.1.1.1
       - 8.8.8.8
+    environment:
+      - APP_ENV=prod
+      - APP_DEBUG=0
+
   caddy:
     image: caddy:latest
     depends_on:
