@@ -38,6 +38,7 @@ services:
     environment:
       - APP_ENV=prod
       - APP_DEBUG=0
+      - APP_SECRET=67d829bf4b7bd070f36d6912161d13f0
 
   caddy:
     image: caddy:latest
