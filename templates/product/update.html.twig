@@ -45,6 +45,7 @@
 			<th>Nom</th>
 			<th>Orientation sanitaire</th>
 			<th><i class="chartline icon"></i> Rentabilité</th>
+			<th class="table-loop"><i class="eye icon"></i></th>
 			<th class="table-loop"><i class="cog icon"></i></th>
 		</tr>
 		</thead>
@@ -61,6 +62,11 @@
 					{% set totalIncome = totalIncome + step.income %}
 				{% endfor %}
 				<td style="background-color: {{ (workflow.price + totalIncome > totalCost) ? 'var(--color-sidebar)' : (workflow.price + totalIncome - totalCost == 0) ? '#c2b58f' : '#f5a4a9' }};">{{ workflow.price + totalIncome - totalCost }} € <i class="angle double {{ workflow.price + totalIncome > totalCost ? 'up' : (workflow.price + totalIncome - totalCost == 0) ? 'equals' : 'down' }} icon"></i></td>
+				<td class="table-loop">
+					<a href="{{ path('app.dashboard.workflow.update', { id: workflow.id }) }}">
+						<span class="ui basic green label">Ouvrir</span>
+					</a>
+				</td>
 				<td>
 					<a href="{{ path('app.dashboard.workflow.delete', { id: workflow.id }) }}" class="ui basic red label">
 						Supprimer

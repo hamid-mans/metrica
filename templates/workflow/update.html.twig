@@ -113,6 +113,7 @@
                 <th><i class="plus icon"></i> Gain</th>
                 <th><i class="minus icon"></i> Coût</th>
                 <th><i class="chartline icon"></i> Solde</th>
+                <th class="table-loop"><i class="eye icon"></i></th>
                 <th class="table-loop">Actions</th>
             </tr>
             </thead>
@@ -124,6 +125,11 @@
                     <td>{{ step.income }} €</td>
                     <td>{{ step.cost }} €</td>
                     <td style="background-color: {{ step.cost < step.income ? 'var(--color-sidebar)' : (step.cost - step.income == 0) ? '#c2b58f' : '#f5a4a9' }};">{{ step.income - step.cost }} € <i class="{{ step.cost < step.income ? 'angle double up' : (step.cost - step.income == 0) ? 'equals' : 'angle double down'}} icon"></i></td>
+                    <td class="table-loop">
+                        <a href="{{ path('app.dashboard.steps.update', { id: step.id }) }}">
+                            <span class="ui basic green label">Ouvrir</span>
+                        </a>
+                    </td>
                     <td class="table-loop">
                         <a href="{{ path('app.dashboard.steps.delete', {id: step.id}) }}" class="ui basic red label">Supprimer</a>
                     </td>
