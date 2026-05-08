@@ -13,13 +13,13 @@ echo "✓ BDD OK !"
 echo "> Mise à jour BDD..."
 php bin/console doctrine:schema:update --force --no-interaction
 
-# Assets - On tente l'install et le build, mais on ne coupe pas tout si ça échoue
+# Assets
 echo "> Préparation des assets..."
-php bin/console importmap:install || echo "⚠️ Warning: importmap install failed"
-php bin/console assets:install public --no-interaction || echo "⚠️ Warning: assets install failed"
+php bin/console assets:install public --no-interaction
 
-# Supprime la ligne asset-map:compile pour le moment,
-# elle n'est pas indispensable en développement local.
+# --- ON COMMENTE LA LIGNE SUIVANTE ---
+# php bin/console asset-map:compile
+# -------------------------------------
 
-echo "✓ Symfony prêt (Démarrage PHP-FPM)"
+echo "✓ Symfony prêt ! Démarrage du serveur..."
 exec "$@"
