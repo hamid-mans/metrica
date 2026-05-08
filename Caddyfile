@@ -1,6 +1,9 @@
-mobile.ycpgestion.fr:2345 {
+:80 {
     root * /valori/public
     php_fastcgi app:9000
-    encode gzip zstd
     file_server
+
+    log {
+            output stdout
+        }
 }
