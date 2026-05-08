@@ -288,7 +288,8 @@ final class ProductController extends AbstractController
 
                 $newStep = new Step();
 
-                $newStep->setName($step->getName());
+
+                $newStep->setName(strtoupper($step->getName()));
                 $newStep->setCost($step->getCost());
                 $newStep->setIncome($step->getIncome());
                 $newStep->setStepNumber($step->getStepNumber());
