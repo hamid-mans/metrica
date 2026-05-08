@@ -29,7 +29,8 @@ RUN composer install \
     --no-progress \
     --no-interaction \
     --optimize-autoloader \
-    --no-scripts
+    --no-scripts \
+    --ignore-platform-req=ext-xml
 
 # Copie du reste du projet
 COPY . .
